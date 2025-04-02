@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/19fac983-07da-41fb-a3a6-287836779f2a)
+![sr5psh4l](https://github.com/user-attachments/assets/0777acfb-7c20-484a-bbbf-1a4ef240a03e)
+
 
 # MarketPlace-E-Commerce-Platform
 This project is part of the Internet Applications course, designed as an e-commerce platform
