@@ -40,11 +40,11 @@ There are 3 types of users:
 - Database schema design is required.
 
 ------------
-##Technologies Used:
+## Technologies Used:
 
-- Front-End: React.js with React Router and Axios.
+- Front-End: React.
 
-- Back-End: ASP.NET Core Web API with Entity Framework and SignalR.
+- Back-End: .NET .
 
 - Database: Microsoft SQL Server.
 
