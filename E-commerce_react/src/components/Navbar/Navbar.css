@@ -1,0 +1,136 @@
+.exclusive-navbar {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+  }
+  
+  .nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
+  
+  .nav-center {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .nav-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #555;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 350px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 15px;
+    padding-right: 00px; /* Space for icons */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    margin-right: 5%;
+    margin-left: -55px;
+  }
+  
+  .search-icons-container {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .search-icon {
+    color: #888;
+    cursor: pointer; 
+    margin-right: 0px;
+    
+    background: none;
+
+  }
+  
+  .nav-icon {
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 0 5px;
+    
+     
+  }
+  
+  .nav-icon:hover {
+    color: #000;
+  }
+  
+  .heart-icon:hover {
+    color: #ff0000;
+  }
+  
+  .cart-icon-container {
+    position: relative;
+    ;
+     
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .nav-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .nav-center {
+      gap: 20px;
+    }
+    
+    .search-container {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+
+.heart-icon{
+    margin-right: 20px;
+}
