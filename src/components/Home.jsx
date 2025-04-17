@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";  
 import Sidebar from "./Sidebar/Sidebar";  
+import Services from "./Pages/Services";
+
 import "../Style/Home.css";  
 
 const productsByCategory = {
@@ -118,7 +120,9 @@ const Home = () => {
           </section>
         </div>
       </div>
+      <Services />
     </div>
+    
   );
 };
 
@@ -152,6 +156,7 @@ const ProductCard = ({ product }) => {
         <p className="product-price">${product.price.toFixed(2)}</p>
       </div>
     </Link>
+    
   );
 };
 

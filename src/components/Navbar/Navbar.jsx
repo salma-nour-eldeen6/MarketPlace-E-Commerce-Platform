@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
 import './Navbar.css';
 
+
 const NavigationBar = () => {
   return (
     <nav className="exclusive-navbar">
@@ -15,7 +16,7 @@ const NavigationBar = () => {
         <div className="nav-center">
           <NavLink to="/" className="nav-link" activeClassName="active">Home</NavLink>
           <NavLink to="/about" className="nav-link" activeClassName="active">About</NavLink>
-          <NavLink to="/signup" className="nav-link" activeClassName="active">Sign Up</NavLink>
+          <NavLink to="/AuthPage" className="nav-link" activeClassName="active">Sign Up</NavLink>
         </div>
 
         {/* Right side - Search with icons */}
