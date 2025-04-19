@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProductTable.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ProductTable() {
-  const products = [
+  const navigate = useNavigate();
+
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "LCD Monitor",
@@ -22,14 +24,17 @@ function ProductTable() {
       image:
         "https://media.istockphoto.com/id/148171018/photo/video-game-gamepad.jpg?s=612x612&w=0&k=20&c=AEQXmZPfTDjhWdf0ZNFvVBExqs6zpDZlB9FPWYsYhDs=",
     },
-  ];
+  ]);
 
   const handleDelete = (id) => {
-    console.log("Delete product:", id);
+    const confirmed = window.confirm("Are you sure you want to delete this product?");
+    if (confirmed) {
+      setProducts(products.filter((p) => p.id !== id));
+    }
   };
 
-  const handleEdit = (id) => {
-    console.log("Edit product:", id);
+  const handleEdit = (product) => {
+    navigate(`/edit/${product.id}`, { state: { product } });
   };
 
   return (
@@ -53,7 +58,6 @@ function ProductTable() {
                     alt={prod.name}
                     className="product-image"
                   />
-
                   <button
                     className="btn-delete"
                     onClick={() => handleDelete(prod.id)}
@@ -62,7 +66,7 @@ function ProductTable() {
                   </button>
                   <button
                     className="btn-edit"
-                    onClick={() => handleEdit(prod.id)}
+                    onClick={() => handleEdit(prod)}
                   >
                     ✎
                   </button>
