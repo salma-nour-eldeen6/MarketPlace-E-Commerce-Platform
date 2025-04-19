@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";  
 import Sidebar from "./Sidebar/Sidebar";  
 import Services from "./Pages/Services";
-
+import Footer from "./Footer/Footer"
 import "../Style/Home.css";  
 
 const productsByCategory = {
@@ -121,6 +121,7 @@ const Home = () => {
         </div>
       </div>
       <Services />
+      <Footer />
     </div>
     
   );
