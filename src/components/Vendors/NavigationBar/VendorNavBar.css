@@ -1,0 +1,84 @@
+.exclusive-navbar {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+  }
+  
+  .nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
+  
+  .nav-center {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .nav-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #555;
+  }
+  
+  .nav-icon-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .profile-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile-icon {
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Optional if you want it on far right in a flex container */
+  .navbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .nav-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .nav-center {
+      gap: 20px;
+    }
+    
+    .search-container {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+
+.heart-icon{
+    margin-right: 20px;
+}
