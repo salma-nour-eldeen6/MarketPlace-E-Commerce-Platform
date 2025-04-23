@@ -148,10 +148,7 @@
     text-decoration: none;
     transition: all 0.2s ease;
   }
-  
-  .forgot-password a:hover {
-    color: #6366f1;
-  }
+
   
   /* Responsive Design */
   @media (max-width: 1024px) {
