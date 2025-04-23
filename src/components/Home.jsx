@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";  
 import Sidebar from "./Sidebar/Sidebar";  
 import Services from "./Pages/Services";
-import Footer from "./Footer/Footer"
+import Footer from "./Footer/Footer";
+import ProductDetails from "./Pages/ProductDetails";
+// import ProductCard from "./ProductCard"; // Importing ProductCard component
 import "../Style/Home.css";  
 
 const productsByCategory = {
@@ -13,7 +15,7 @@ const productsByCategory = {
       name: "Women's Summer Dress",
       price: 49.99,
       rating: 4.5,
-      image: "https://example.com/women-dress.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_-m0o4e6QParA0ofCMowzla2ruDm3lJ1I3MZKWP-WeJ0kqXcgR7-wky7Zy3jBEW9pMdg&usqp=CAU",
       description: "Lightweight summer dress with floral pattern"
     },
     {
@@ -21,7 +23,7 @@ const productsByCategory = {
       name: "Women's Sneakers",
       price: 79.99,
       rating: 4.2,
-      image: "https://example.com/women-sneakers.jpg",
+      image: "https://www.mytheresa.com/media/1094/1238/100/0b/P00682288.jpg",
       description: "Comfortable running shoes for women"
     }
   ],
@@ -31,7 +33,7 @@ const productsByCategory = {
       name: "Men's Casual Shirt",
       price: 39.99,
       rating: 4.3,
-      image: "https://example.com/men-shirt.jpg",
+      image: "https://www.mytheresa.com/media/652/738/100/45/P00983828.jpg",
       description: "Cotton casual shirt for men"
     },
     {
@@ -39,7 +41,7 @@ const productsByCategory = {
       name: "Men's Jeans",
       price: 59.99,
       rating: 4.7,
-      image: "https://example.com/men-jeans.jpg",
+      image: "https://www.mytheresa.com/media/652/738/100/ef/P01013282.jpg",
       description: "Slim fit denim jeans"
     },
     {
@@ -47,7 +49,7 @@ const productsByCategory = {
         name: "Men's Jeans",
         price: 59.99,
         rating: 4.7,
-        image: "https://example.com/men-jeans.jpg",
+        image: "https://www.mytheresa.com/media/652/738/100/82/P01001134.jpg",
         description: "Slim fit denim jeans"
       },
       {
@@ -55,7 +57,7 @@ const productsByCategory = {
         name: "Men's Jeans",
         price: 59.99,
         rating: 4.7,
-        image: "https://example.com/men-jeans.jpg",
+        image: "https://www.mytheresa.com/media/652/738/100/76/P00980732.jpg",
         description: "Slim fit denim jeans"
       }
   ],
@@ -65,7 +67,7 @@ const productsByCategory = {
       name: "Wireless Headphones",
       price: 129.99,
       rating: 4.8,
-      image: "https://example.com/headphones.jpg",
+      image: "https://cdn.thewirecutter.com/wp-content/media/2023/09/noise-cancelling-headphone-2048px-0876.jpg",
       description: "Noise-cancelling Bluetooth headphones"
     }
   ]
@@ -78,7 +80,6 @@ const Home = () => {
       
       <div className="main-content">
         <Sidebar />
-        
         <div className="content-area">
           {/* Banner Image */}
           <div className="banner-container">
