@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./AppStyles.css";
 import CustomerManager from "./components/Customers/CustomerManager";
+import ProductDetails from "./components/Pages/ProductDetails";
 
 import Home from "./components/Home";
 import NavigationBar from "./components/Navbar/Navbar";
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/AuthPage" element={<AuthPage />} />
         <Route path="/customers" element={<CustomerManager />} />
         <Route path="/customers/:id" element={<CustomerManager />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
         {/* <Route path='/products' element={<ProductManager />} />
                 <Route path='/products/:id' element={<ProductManager />} />
                 <Route path='/orders' element={<OrderManager />} />
