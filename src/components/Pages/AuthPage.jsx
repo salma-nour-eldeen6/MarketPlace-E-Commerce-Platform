@@ -20,18 +20,42 @@ const AuthPage = () => {
         </div> */}
 
         <form className="auth-form">
-          {!isLogin && (
-            <div className="form-group">
-              <label>Name</label>
-              <input type="text" placeholder="Enter your name" required />
-            </div>
-          )}
+        {!isLogin && (
+  <>
+    <div className="form-group">
+      <label>Name</label>
+      <input type="text" placeholder="Enter your name" required />
+    </div>
+
+    <div className="form-group">
+      <label>Address</label>
+      <input type="text" placeholder="Enter your address" required />
+    </div>
+
+    <div className="form-group">
+      <label>Role</label>
+      <select required>
+        <option value="">Select your role</option>
+        <option value="customer">Customer</option>
+        <option value="vendor">Vendor</option>
+      </select>
+    </div>
+  </>
+)}
+
           
           <div className="form-group">
             <label>Email</label>
             <input type="text" placeholder="Enter your email" required />
           </div>
-          
+
+          <div className="form-group">
+            <label>Phone</label>
+            <input type="text" placeholder="Enter your phone number" required />
+          </div>
+
+           
+
           <div className="form-group">
             <label>Password</label>
             <input type="password" placeholder="Enter your password" required />
