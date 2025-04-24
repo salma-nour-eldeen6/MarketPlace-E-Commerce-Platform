@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./AppStyles.css";
 import CustomerManager from "./components/Customers/CustomerManager";
 import ProductDetails from "./components/Pages/ProductDetails";
+import ShoppingCart from './components/Pages/ShoppingCart';
 
 import Home from "./components/Home";
 import NavigationBar from "./components/Navbar/Navbar";
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/customers" element={<CustomerManager />} />
         <Route path="/customers/:id" element={<CustomerManager />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<ShoppingCart />} />
         {/* <Route path='/products' element={<ProductManager />} />
                 <Route path='/products/:id' element={<ProductManager />} />
                 <Route path='/orders' element={<OrderManager />} />
