@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 function ProductTable() {
   const navigate = useNavigate();
 
+  const [filter, setFilter] = useState("All");
+
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -27,7 +29,7 @@ function ProductTable() {
   ]);
 
   const handleDelete = (id) => {
-    const confirmed = window.confirm("Are you sure you want to delete this product?");
+    const confirmed = window.confirm("Delete this product?");
     if (confirmed) {
       setProducts(products.filter((p) => p.id !== id));
     }
@@ -37,8 +39,28 @@ function ProductTable() {
     navigate(`/edit/${product.id}`, { state: { product } });
   };
 
+  const filteredProducts =
+    filter === "All"
+      ? products
+      : products.filter((prod) => prod.status === filter);
+
   return (
     <div className="product-container">
+      {/* Filter Dropdown */}
+      <div className="filter-bar">
+        <label htmlFor="filter">Filter by Status: </label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Pending">Pending</option>
+        </select>
+      </div>
+
+      {/* Product Table */}
       <table className="product-table">
         <thead>
           <tr>
@@ -49,7 +71,7 @@ function ProductTable() {
           </tr>
         </thead>
         <tbody>
-          {products.map((prod) => (
+          {filteredProducts.map((prod) => (
             <tr key={prod.id}>
               <td className="product-info">
                 <div className="product-image-container">
