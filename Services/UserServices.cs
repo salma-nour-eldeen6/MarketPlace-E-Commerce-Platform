@@ -111,7 +111,7 @@ namespace IA_marketPlace.Services
 
             var token = _tokenService.GenerateToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken();
-            await _userRepository.SaveRefreshTokenAsync(user.UserId, refreshToken);
+            await _refreshTokenRepository.SaveRefreshTokenAsync(user.UserId, refreshToken);
 
             return new TokenResponse
             {
