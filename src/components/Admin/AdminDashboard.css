@@ -1,0 +1,12 @@
+.admin-wrapper {
+    display: flex;
+    min-height: calc(100vh - 120px); /* Adjust depending on header/footer height */
+    background-color: #fff;
+  }
+  
+.admin-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #fff;
+    overflow-y: auto;
+  }
