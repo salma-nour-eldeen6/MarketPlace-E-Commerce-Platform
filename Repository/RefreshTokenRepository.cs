@@ -17,12 +17,12 @@ namespace IA_marketPlace.Repository
         {
             var token = new RefreshToken
             {
-                UserId = userId,
                 Token = refreshToken,
+                UserId = userId,
                 ExpiryDate = DateTime.Now.AddDays(7)
             };
 
-            _context.RefreshTokens.Add(token);
+            await _context.RefreshTokens.AddAsync(token);
             await _context.SaveChangesAsync();
         }
 
