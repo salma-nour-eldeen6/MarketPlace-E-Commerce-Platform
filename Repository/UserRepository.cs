@@ -39,18 +39,7 @@ namespace IA_marketPlace.Repository
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == encryptedEmail);
         }
 
-        public async Task SaveRefreshTokenAsync(int userId, string refreshToken)
-        {
-            var token = new RefreshToken
-            {
-                Token = refreshToken,
-                UserId = userId,
-                ExpiryDate = DateTime.Now.AddDays(7)
-            };
 
-            await _context.RefreshTokens.AddAsync(token);
-            await _context.SaveChangesAsync();
-        }
 
         public async Task<User> GetUserByRefreshTokenAsync(string token)
         {
