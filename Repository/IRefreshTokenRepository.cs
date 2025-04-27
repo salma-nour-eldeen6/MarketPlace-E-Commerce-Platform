@@ -8,5 +8,7 @@ namespace IA_marketPlace.Repository
        Task<RefreshToken> GetRefreshTokenByUserId(int userId); 
        Task DeleteRefreshTokenAsync(RefreshToken refreshToken);
        Task DeleteRefreshTokensByUserIdAsync(int userId);
+       Task<int?> ValidateRefreshTokenAsync(string refreshToken);
+
     }
 }
