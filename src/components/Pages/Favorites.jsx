@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import ProductCard from '/home/snour-eldeen/E-commerce_react/src/components/Pages/ShoppingCart.jsx';
-import '/home/snour-eldeen/E-commerce_react/src/Style/Favorites.css';
+import '../../Style/Favorites.css';
 
 const Favorites = () => {
   // Get favorites from localStorage or context
