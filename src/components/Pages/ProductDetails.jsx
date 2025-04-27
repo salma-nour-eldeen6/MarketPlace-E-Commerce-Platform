@@ -44,7 +44,7 @@ const ProductDetails = () => {
               },
               views: 1243
             },
-            // يمكن إضافة منتجات أخرى هنا بنفس الهيكل
+           
           };
           
           const foundProduct = allProducts[id];
@@ -74,6 +74,69 @@ const ProductDetails = () => {
       setQuantity(newQuantity);
     }
   };
+
+
+
+
+
+  const addToCart = () => {
+     
+    if (!selectedSize) {
+      alert('Please select a size before adding to cart');
+      return;
+    }
+  
+    try {
+       
+      const cartItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[0],
+        quantity: quantity,
+        size: selectedSize,
+        maxStock: product.stock 
+      };
+  
+      
+      const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+     
+      const existingItemIndex = existingCart.findIndex(item => 
+        item.id === product.id && item.size === selectedSize
+      );
+  
+       
+      if (existingItemIndex >= 0) {
+        const newQuantity = existingCart[existingItemIndex].quantity + quantity;
+        
+        
+        if (newQuantity > existingCart[existingItemIndex].maxStock) {
+          alert(`You can't add more than ${existingCart[existingItemIndex].maxStock} of this item`);
+          return;
+        }
+        
+        existingCart[existingItemIndex].quantity = newQuantity;
+      } else {
+       
+        existingCart.push(cartItem);
+      }
+  
+    
+      localStorage.setItem('cart', JSON.stringify(existingCart));
+      
+      
+      alert(`${quantity} ${product.name} (Size: ${selectedSize}) added to cart!`);
+      
+ 
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      alert('There was an error adding the product to your cart. Please try again.');
+    }
+  };
+
+
+
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -195,7 +258,14 @@ const ProductDetails = () => {
           </div>
 
           <div className="product-actions">
-            <button className="action-btn add-to-cart">Add to Cart</button>
+            
+          <button 
+            className="action-btn add-to-cart"
+            onClick={addToCart}
+            disabled={!selectedSize}
+          >
+            Add to Cart
+          </button>
             <button className="action-btn buy-now">Buy Now</button>
             <button 
               className={`action-btn wishlist ${isFavorite ? 'active' : ''}`}
