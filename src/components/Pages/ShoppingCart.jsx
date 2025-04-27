@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import "/home/snour-eldeen/E-commerce_react/src/Style/ShoppingCart.css";
+import "../../Style/ShoppingCart.css";
  
 
 
