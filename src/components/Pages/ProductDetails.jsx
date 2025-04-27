@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import "/home/snour-eldeen/E-commerce_react/src/Style/ProductDetails.css";
+import "../../Style/ProductDetails.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
