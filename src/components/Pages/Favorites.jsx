@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import ProductCard from '/home/snour-eldeen/E-commerce_react/src/components/Pages/ShoppingCart.jsx';
+import ProductCard from 'ShoppingCart.jsx';
 import '../../Style/Favorites.css';
 
 const Favorites = () => {
