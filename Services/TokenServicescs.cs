@@ -51,5 +51,37 @@ namespace IA_marketPlace.Services
             }
             return Convert.ToBase64String(randomNumber);
         }
+
+        
+        public async Task<object> RefreshTokenAsync(string refreshToken)
+        {
+            var userId = await _refreshTokenRepository.ValidateRefreshTokenAsync(refreshToken);
+            if (userId == null)
+                return new { message = "Invalid or expired refresh token" };
+
+            var user = await _userRepository.GetUserByIdAsync(userId.Value);
+            if (user == null)
+                return new { message = "User not found" };
+
+            var newAccessToken = GenerateToken(user);
+
+            var newRefreshToken = GenerateRefreshToken();
+
+            var oldRefreshToken = await _refreshTokenRepository.GetRefreshTokenByUserId(user.UserId);
+            if (oldRefreshToken != null)
+            {
+                await _refreshTokenRepository.DeleteRefreshTokenAsync(oldRefreshToken);
+            }
+
+            await _refreshTokenRepository.SaveRefreshTokenAsync(user.UserId, newRefreshToken);
+
+            return new
+            {
+                token = newAccessToken,
+                expiration = DateTime.Now.AddHours(1),
+                refreshToken = newRefreshToken,
+                message = "Token refreshed successfully"
+            };
+        }
     }
 }
