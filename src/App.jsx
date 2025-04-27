@@ -1,6 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import "./AppStyles.css";
 import CustomerManager from "./components/Customers/CustomerManager";
+import ProductDetails from "./components/Pages/ProductDetails";
+import ShoppingCart from './components/Pages/ShoppingCart';
+import Favorites from './components/Pages/Favorites';
+import About from "./components/Pages/About";
 
 import Home from "./components/Home";
 import NavigationBar from "./components/Navbar/Navbar";
@@ -28,6 +32,10 @@ const App = () => {
         <Route path="/AuthPage" element={<AuthPage />} />
         <Route path="/customers" element={<CustomerManager />} />
         <Route path="/customers/:id" element={<CustomerManager />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/about" element={<About />} />
         {/* <Route path='/products' element={<ProductManager />} />
                 <Route path='/products/:id' element={<ProductManager />} />
                 <Route path='/orders' element={<OrderManager />} />
