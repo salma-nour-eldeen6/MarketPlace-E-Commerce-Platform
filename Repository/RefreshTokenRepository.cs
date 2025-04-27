@@ -45,6 +45,14 @@ namespace IA_marketPlace.Repository
             _context.RefreshTokens.RemoveRange(tokens);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<int?> ValidateRefreshTokenAsync(string refreshToken)
+         {
+           var tokenInDb = await _context.RefreshTokens
+           .FirstOrDefaultAsync(r => r.Token == refreshToken && r.ExpiryDate > DateTime.Now);
+
+            return tokenInDb?.UserId;
+        }
     }
 }
 
