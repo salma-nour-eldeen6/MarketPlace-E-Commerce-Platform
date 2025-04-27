@@ -6,5 +6,7 @@ namespace IA_marketPlace.Services
     {
         string GenerateToken(User user);
         string GenerateRefreshToken();
+       Task<object> RefreshTokenAsync(string refreshToken);
+
     }
 }
