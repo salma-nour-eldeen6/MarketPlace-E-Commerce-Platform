@@ -1,4 +1,4 @@
-﻿using IA_marketPlace.Data;
+using IA_marketPlace.Data;
 using IA_marketPlace.Models;
 using IA_marketPlace.Services;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +39,7 @@ namespace IA_marketPlace.Repository
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == encryptedEmail);
         }
 
-
+       
 
         public async Task<User> GetUserByRefreshTokenAsync(string token)
         {
@@ -48,6 +48,10 @@ namespace IA_marketPlace.Repository
                                              .FirstOrDefaultAsync(rt => rt.Token == token);
 
             return refreshToken?.User;
+        }
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
         }
     }
 }
