@@ -12,19 +12,33 @@ const EditProduct = () => {
     name: "",
     price: "",
     quantity: "",
-    status: "Pending",
-    image: "",
+    image: null,
   });
 
   const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setProduct({ ...product, image: files[0] }); // handle file upload
+    } else if (name === "price") {
+      setProduct({ ...product, price: `$${value}` });
+    } else {
+      setProduct({ ...product, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Updated Product:", product);
-    // You can send this to a backend here
-    navigate(-1); // Go back to previous page
+    // Backend update here, e.g., using FormData if sending a file
+    /*
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('price', product.price);
+    formData.append('quantity', product.quantity);
+    formData.append('image', product.image);
+    axios.post(`/api/products/${id}`, formData);
+    */
+    navigate(-1); // Go back
   };
 
   return (
@@ -50,9 +64,7 @@ const EditProduct = () => {
             type="number"
             name="price"
             value={product.price.replace("$", "")}
-            onChange={(e) =>
-              setProduct({ ...product, price: `$${e.target.value}` })
-            }
+            onChange={handleChange}
             required
           />
         </div>
@@ -69,24 +81,11 @@ const EditProduct = () => {
         </div>
 
         <div className="form-group">
-          <label>Status</label>
-          <select
-            name="status"
-            value={product.status}
-            onChange={handleChange}
-            required
-          >
-            <option value="Pending">Pending</option>
-            <option value="Accepted">Accepted</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Image URL</label>
+          <label>Image</label>
           <input
-            type="text"
+            type="file"
             name="image"
-            value={product.image}
+            accept="image/*"
             onChange={handleChange}
           />
         </div>
