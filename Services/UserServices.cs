@@ -122,43 +122,40 @@ namespace IA_marketPlace.Services
             };
         }
 
-        // Logout Async
-        public async Task<TokenResponse> LogoutAsync()
-        {
-            try
-            {
-                var user = _httpContextAccessor.HttpContext?.User;
-                if (user == null)
-                {
-                    return new TokenResponse { Message = "User context not found." };
-                }
+// logout 
+  public async Task<string> Logout()
+  {
+      try
+      {
+          Console.WriteLine("Start Logout");
 
-                var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (string.IsNullOrEmpty(userId))
-                {
-                    return new TokenResponse { Message = "User ID not found." };
-                }
+          var user = _httpContextAccessor.HttpContext?.User;
+          if (user == null)
+          {
+              return "HttpContext or User is null.";
+          }
 
-                if (!int.TryParse(userId, out int parsedUserId))
-                {
-                    return new TokenResponse { Message = "Invalid user ID format." };
-                }
+          var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //  Console.WriteLine($"User ID: {userId}");
 
-                var refreshToken = await _refreshTokenRepository.GetRefreshTokenByUserId(parsedUserId);
-                if (refreshToken == null)
-                {
-                    return new TokenResponse { Message = "Refresh token not found." };
-                }
+          if (userId == null)
+          {
+              return "User not found.";
+          }
 
-                await _refreshTokenRepository.DeleteRefreshTokenAsync(refreshToken);
 
-                return new TokenResponse { Message = "Logged out successfully." };
-            }
-            catch (Exception ex)
-            {
-                return new TokenResponse { Message = $"An error occurred: {ex.Message}" };
-            }
-        }
+          var refreshToken = await _refreshTokenRepository.GetRefreshTokenByUserId(int.Parse(userId));
+ 
+
+          await _refreshTokenRepository.DeleteRefreshTokenAsync(refreshToken);
+
+          return "Logged out successfully.";
+      }
+      catch (Exception ex)
+      {
+          return $"An error occurred: {ex.Message}";
+      }
+  }
 
 
     }
