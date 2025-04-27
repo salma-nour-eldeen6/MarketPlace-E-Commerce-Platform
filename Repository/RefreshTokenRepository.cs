@@ -1,4 +1,4 @@
-﻿using IA_marketPlace.Data;
+using IA_marketPlace.Data;
 using IA_marketPlace.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,12 +47,11 @@ namespace IA_marketPlace.Repository
         }
 
         public async Task<int?> ValidateRefreshTokenAsync(string refreshToken)
-         {
-           var tokenInDb = await _context.RefreshTokens
-           .FirstOrDefaultAsync(r => r.Token == refreshToken && r.ExpiryDate > DateTime.Now);
+        {
+            var tokenInDb = await _context.RefreshTokens
+            .FirstOrDefaultAsync(r => r.Token == refreshToken && r.ExpiryDate > DateTime.Now);
 
             return tokenInDb?.UserId;
         }
     }
 }
-
