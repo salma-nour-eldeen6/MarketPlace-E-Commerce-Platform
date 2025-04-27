@@ -1,4 +1,5 @@
-﻿using IA_marketPlace.Models;
+using IA_marketPlace.Models;
+using IA_marketPlace.Repository;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,17 +11,21 @@ namespace IA_marketPlace.Services
     public class TokenServicescs : ITokenServices
     {
         private readonly IConfiguration _config;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TokenServicescs(IConfiguration config)
+
+        public TokenServicescs(IConfiguration config, IRefreshTokenRepository refreshTokenRepository, IUserRepository userRepository)
         {
             _config = config;
+            _refreshTokenRepository = refreshTokenRepository;
+            _userRepository = userRepository;
         }
 
         public string GenerateToken(User user)
         {
             var UserClaims = new List<Claim>
             {
-                // token generated id 
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
@@ -30,7 +35,6 @@ namespace IA_marketPlace.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // design token
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
@@ -38,7 +42,6 @@ namespace IA_marketPlace.Services
                 expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds
             );
-            // generate token
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -52,7 +55,7 @@ namespace IA_marketPlace.Services
             return Convert.ToBase64String(randomNumber);
         }
 
-        
+
         public async Task<object> RefreshTokenAsync(string refreshToken)
         {
             var userId = await _refreshTokenRepository.ValidateRefreshTokenAsync(refreshToken);
@@ -83,5 +86,6 @@ namespace IA_marketPlace.Services
                 message = "Token refreshed successfully"
             };
         }
+
     }
 }
