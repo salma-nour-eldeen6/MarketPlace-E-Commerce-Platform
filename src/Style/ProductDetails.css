@@ -41,11 +41,12 @@
     }
   }
   
-  /* قسم الصور */
+ 
   .product-images {
     width: 100%;
     order: 1;
     position: relative;
+  
   }
   
   @media (min-width: 992px) {
@@ -107,37 +108,44 @@
     z-index: 2;
     font-size: 20px;
   }
+ 
+.product-info {
+  display: block;
+  width: 100%;
+}
+
+.product-rating {
+  display: block;
+  margin-bottom: 15px;
+}
+
+ 
+.product-title,
+.product-price,
+.product-meta {
+  display: block;
+  width: 100%;
+}
+
+ 
+.product-details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 992px) {
+  .product-details-container {
+    flex-direction: row;
+  }
+  
+  .product-images {
+    width: 50%;
+  }
   
   .product-info {
-    display: block;
-    align-items: center;
-    gap: 15px;
+    width: 50%;
   }
-  
-  @media (min-width: 992px) {
-    .product-info {
-      width: 50%;
-      padding: 0 20px;
-      display: block;
-      align-items: center;
-      gap:
-    15px;
-    }
-  }
-  
-  .product-title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: var(--dark-color);
-  }
-  
-  .product-rating {
-    display: block;
-    align-items: center;
-    margin-bottom: 15px;
-    gap: 5px;
-  }
+}
   
   .star {
     color: #ccc;
