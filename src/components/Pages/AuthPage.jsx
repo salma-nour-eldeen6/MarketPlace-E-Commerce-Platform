@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import '/home/snour-eldeen/E-commerce_react/src/Style/AuthPage.css';
+import '../../Style/AuthPage.css';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
