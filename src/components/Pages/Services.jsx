@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaTruck, FaHeadset, FaMoneyBillWave } from 'react-icons/fa';
-import '/home/snour-eldeen/E-commerce_react/src/Style/Services.css';  
+import '../../Style/Services.css';  
 
 const Services = () => {
   return (
