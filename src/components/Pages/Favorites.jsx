@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import ProductCard from 'ShoppingCart.jsx';
+import ProductCard from '../Pages/ShoppingCart.jsx';
 import '../../Style/Favorites.css';
 
 const Favorites = () => {

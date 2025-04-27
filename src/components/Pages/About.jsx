@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { FaGem, FaRocket, FaHandshake, FaHeart, FaUsers, FaChartLine, FaAward } from 'react-icons/fa';
 import { GiAbstract024 } from 'react-icons/gi';
-import 'import '../../Style/About.css';
+import '../../Style/About.css';
 
 const About = () => {
   return (
