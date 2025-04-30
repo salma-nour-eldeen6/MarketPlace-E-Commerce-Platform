@@ -60,7 +60,7 @@ namespace IA_marketPlace.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            var result = await _userService.LogoutAsync(); // Call LogoutAsync instead of Logout
+            var result = await _userService.LogoutAsync();
             return Ok(result);
         }
     }
