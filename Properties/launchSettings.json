@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "IA_marketPlace": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:9744;http://localhost:9745"
+    }
+  }
+}

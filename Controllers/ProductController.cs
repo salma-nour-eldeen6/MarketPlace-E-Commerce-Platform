@@ -15,9 +15,9 @@ namespace IA_marketPlace.Controllers
     {
         private readonly IProductService _productService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IProductRepository _productRepository; 
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(IProductService productService , IHttpContextAccessor httpContextAccessor ,IProductRepository productRepository)
+        public ProductController(IProductService productService, IHttpContextAccessor httpContextAccessor, IProductRepository productRepository)
         {
             _productService = productService;
             _httpContextAccessor = httpContextAccessor;
@@ -31,8 +31,14 @@ namespace IA_marketPlace.Controllers
         {
             var user = _httpContextAccessor.HttpContext?.User;
             var userId = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-         
-            var result = await _productService.AddProductAsync(dto, int.Parse( userId));
+
+            // Check if userId is null before parsing
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+
+            var result = await _productService.AddProductAsync(dto, int.Parse(userId));
             return Ok(result);
         }
 
@@ -69,7 +75,7 @@ namespace IA_marketPlace.Controllers
             return Ok();
         }
 
-        
+
         [HttpPut("update/{productId}")]
         [Authorize(Roles = "Vendor")]
         public async Task<IActionResult> UpdateProduct(int productId, [FromForm] ProductDTO updatedDto)
@@ -82,7 +88,7 @@ namespace IA_marketPlace.Controllers
                 return Unauthorized("User not authenticated.");
             }
 
-            var product = await _productRepository.GetProductByIdAsync(productId); 
+            var product = await _productRepository.GetProductByIdAsync(productId);
 
             if (product == null)
             {
@@ -101,13 +107,24 @@ namespace IA_marketPlace.Controllers
 
 
         [HttpGet("track/{productName}")]
-        [Authorize(Roles = "Vendor")]
+        //[Authorize(Roles = "Vendor,Customer")]
         public async Task<IActionResult> TrackPurchaseProduct(string productName)
         {
-  
+
             //int vendorId = 2;
             var result = await _productService.TrackPurchasedProductAsync(productName);
             return Ok(result);
         }
+
+
+        // GET: api/product/browse?searchTerm=phone&category=Electronics&minPrice=100&maxPrice=1000
+        [HttpGet("browse")]
+        [AllowAnonymous] // Allow access without authentication
+        public async Task<IActionResult> BrowseProducts([FromQuery] string? searchTerm, [FromQuery] string? category, [FromQuery] decimal? minPrice, [FromQuery] decimal? maxPrice)
+        {
+            var result = await _productService.BrowseProductsAsync(searchTerm, category, minPrice, maxPrice);
+            return Ok(result);
+        }
+
     }
 }

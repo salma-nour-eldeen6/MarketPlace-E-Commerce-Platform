@@ -48,7 +48,7 @@ public partial class MarketplaceContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=DESKTOP-3R2HVDJ\\SQLEXPRESS;Initial Catalog=marketplace;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=1234");
+        optionsBuilder.UseSqlServer("Data Source=DESKTOP-SHQGKFR\\SQLEXPRESS;Initial Catalog=marketplace;Integrated Security=True;TrustServerCertificate=True;User Id=sa;Password=1234");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
