@@ -42,7 +42,7 @@ const AuthPage = () => {
 
     if (now >= expirationDate || (expirationDate - now) / 1000 < 60) {
       try {
-        const response = await axios.post('https://localhost:7110/api/RfreshToken/RefreshToken', {
+        const response = await axios.post('http://localhost:5176/api/RfreshToken/RefreshToken', {
           refreshToken: refreshToken,
         });
 
@@ -92,7 +92,7 @@ const AuthPage = () => {
 
     if (!isLogin) {
       try {
-        const response = await axios.post('https://localhost:7110/api/User/register', formData);
+        const response = await axios.post('http://localhost:5176/api/User/register', formData);
         alert('Registration successful! Please log in.');
         setIsLogin(true);
       } catch (error) {
@@ -101,7 +101,7 @@ const AuthPage = () => {
       }
     } else {
       try {
-        const response = await axios.post('https://localhost:7110/api/User/login', {
+        const response = await axios.post('http://localhost:5176/api/User/login', {
           Email: formData.Email,
           Password: formData.Password,
         });
@@ -129,7 +129,7 @@ const AuthPage = () => {
             } else if (data.role === 'Vendor') {
               navigate('/vendor-dashboard');
             } else  {
-              navigate('/admin-dashboard');
+              navigate('/admin');
             }
           }, 100);
         } else {
@@ -145,112 +145,118 @@ const AuthPage = () => {
   return (
     <div className="auth-container">
       <Navbar />
-      <div className="auth-content">
-        <div>
-          <img
-            src="https://plus.unsplash.com/premium_photo-1678495325302-1986635b2bfb?w=900&auto=format&fit=crop&q=60"
-            alt="Exclusive"
-            className="auth-image"
-          />
-        </div>
+       
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          {!isLogin && (
-            <>
-              <div className="form-group">
-                <label>Name</label>
-                <input
-                  name="Name"
-                  type="text"
-                  value={formData.Name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
+      <div class="background-images">
+    <img src="https://media.istockphoto.com/id/1502375774/vector/shopping-online-global-retail-shop-store-order-purchase-sale-discount-payment-set-3d-icon.jpg?s=612x612&w=0&k=20&c=IWjAEaxamwXmmGCO0ajtR3mrV3d3ruQPF0QxNQ9cFss=" />
+    <img src="https://media.istockphoto.com/id/1499697643/vector/shopping-goods-purchase-internet-store-order-sale-discount-special-offer-set-3d-icon-vector.jpg?s=612x612&w=0&k=20&c=yvZJOi0ckVT92i0t-4LxhplO1D2nOOMuP1lPIQhX4DE=" />
+    <img src="https://media.istockphoto.com/id/1502375776/vector/internet-shopping-goods-delivery-order-purchase-smartphone-application-set-3d-icon-realistic.jpg?s=612x612&w=0&k=20&c=X9JdtwbNKzNKvdOkKyxGOaLH2hxypZlkw5uEKJEZW2s=" />
+    <img src="https://media.istockphoto.com/id/1499697628/vector/sale-discount-shopping-purchasing-commercial-service-finance-business-promo-set-3d-icon.jpg?s=612x612&w=0&k=20&c=a_Oe1MYhZTJhIRAWv6NO4801X9QOQavyjm5F2n85plg=" />
+    <img src="https://media.istockphoto.com/id/1502375780/vector/shopping-online-grocery-store-goods-order-delivery-smartphone-application-set-3d-icon-vector.jpg?s=612x612&w=0&k=20&c=90YtJ-pLa9a0bKnlv-jmXsrdAe77_vkyFzzptYKmCbE=" />
+    <img src="https://media.istockphoto.com/id/1502375774/vector/shopping-online-global-retail-shop-store-order-purchase-sale-discount-payment-set-3d-icon.jpg?s=612x612&w=0&k=20&c=IWjAEaxamwXmmGCO0ajtR3mrV3d3ruQPF0QxNQ9cFss=" />
+    <img src="https://media.istockphoto.com/id/1499697643/vector/shopping-goods-purchase-internet-store-order-sale-discount-special-offer-set-3d-icon-vector.jpg?s=612x612&w=0&k=20&c=yvZJOi0ckVT92i0t-4LxhplO1D2nOOMuP1lPIQhX4DE=" />
+    <img src="https://media.istockphoto.com/id/1502375776/vector/internet-shopping-goods-delivery-order-purchase-smartphone-application-set-3d-icon-realistic.jpg?s=612x612&w=0&k=20&c=X9JdtwbNKzNKvdOkKyxGOaLH2hxypZlkw5uEKJEZW2s=" />
+    <img src="https://media.istockphoto.com/id/1499697628/vector/sale-discount-shopping-purchasing-commercial-service-finance-business-promo-set-3d-icon.jpg?s=612x612&w=0&k=20&c=a_Oe1MYhZTJhIRAWv6NO4801X9QOQavyjm5F2n85plg=" />
+    <img src="https://media.istockphoto.com/id/1502375780/vector/shopping-online-grocery-store-goods-order-delivery-smartphone-application-set-3d-icon-vector.jpg?s=612x612&w=0&k=20&c=90YtJ-pLa9a0bKnlv-jmXsrdAe77_vkyFzzptYKmCbE=" />
+  </div>
+  <div className="auth-content">
 
-              <div className="form-group">
-                <label>Address</label>
-                <input
-                  name="Address"
-                  type="text"
-                  value={formData.Address}
-                  onChange={handleChange}
-                  placeholder="Enter your address"
-                  required
-                />
-              </div>
+  <form className={`auth-form ${!isLogin ? 'signup-form' : ''}`} onSubmit={handleSubmit}>
+  {!isLogin && (
+    <div className="form-grid">
+      <div className="form-group">
+        <label>Name</label>
+        <input
+          name="Name"
+          type="text"
+          value={formData.Name}
+          onChange={handleChange}
+          placeholder="Enter your name"
+          required
+        />
+      </div>
 
-              <div className="form-group">
-                <label>Phone</label>
-                <input
-                  name="Phone"
-                  type="text"
-                  value={formData.Phone}
-                  onChange={handleChange}
-                  placeholder="Enter your phone number"
-                  required
-                />
-              </div>
+      <div className="form-group">
+        <label>Address</label>
+        <input
+          name="Address"
+          type="text"
+          value={formData.Address}
+          onChange={handleChange}
+          placeholder="Enter your address"
+          required
+        />
+      </div>
 
-              <div className="form-group">
-                <label>Role</label>
-                <select
-                  name="Role"
-                  value={formData.Role}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select your role</option>
-                  <option value="Customer">Customer</option>
-                  <option value="Vendor">Vendor</option>
-                </select>
-              </div>
-            </>
-          )}
+      <div className="form-group">
+        <label>Phone</label>
+        <input
+          name="Phone"
+          type="text"
+          value={formData.Phone}
+          onChange={handleChange}
+          placeholder="Enter your phone number"
+          required
+        />
+      </div>
 
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              name="Email"
-              type="text"
-              value={formData.Email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              required
-            />
-          </div>
+      <div className="form-group">
+        <label>Role</label>
+        <select
+          name="Role"
+          value={formData.Role}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select your role</option>
+          <option value="Customer">Customer</option>
+          <option value="Vendor">Vendor</option>
+        </select>
+      </div>
+    </div>
+  )}
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              name="Password"
-              type="password"
-              value={formData.Password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              required
-            />
-          </div>
+  <div className="form-group">
+    <label>Email</label>
+    <input
+      name="Email"
+      type="text"
+      value={formData.Email}
+      onChange={handleChange}
+      placeholder="Enter your email"
+      required
+    />
+  </div>
 
-          <button type="submit" className="auth-button">
-            {isLogin ? 'Log In' : 'Create Account'}
-          </button>
+  <div className="form-group">
+    <label>Password</label>
+    <input
+      name="Password"
+      type="password"
+      value={formData.Password}
+      onChange={handleChange}
+      placeholder="Enter your password"
+      required
+    />
+  </div>
 
-          <div className="auth-options">
-            {isLogin ? (
-              <p className="auth-switch">
-                Don't have an account?{' '}
-                <span onClick={() => setIsLogin(false)}>Sign Up</span>
-              </p>
-            ) : (
-              <p className="auth-switch">
-                Already have an account?{' '}
-                <span onClick={() => setIsLogin(true)}>Log In</span>
-              </p>
-            )}
-          </div>
-        </form>
+  <button type="submit" className="auth-button">
+    {isLogin ? 'Log In' : 'Create Account'}
+  </button>
+
+  <div className="auth-options">
+    {isLogin ? (
+      <p className="auth-switch">
+        Don't have an account? <span onClick={() => setIsLogin(false)}>Sign Up</span>
+      </p>
+    ) : (
+      <p className="auth-switch">
+        Already have an account? <span onClick={() => setIsLogin(true)}>Log In</span>
+      </p>
+    )}
+  </div>
+</form>
+
       </div>
     </div>
   );
