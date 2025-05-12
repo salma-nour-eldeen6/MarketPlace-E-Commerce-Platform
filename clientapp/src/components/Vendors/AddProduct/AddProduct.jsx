@@ -143,7 +143,7 @@ function AddProduct() {
 
       <button className="back-btn" onClick={() => navigate(-1)}>← Back</button>
 
-      <h2>Add New Product</h2>
+ 
       <form className="add-product-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Product Name</label>
